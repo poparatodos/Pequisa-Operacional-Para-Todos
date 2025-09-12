@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "youtubeId": "CODIGO_DO_VIDEO_1",
+    "title": "Aula 01: Introdução à Programação Linear",
+    "description": "Nesta aula, exploramos os conceitos fundamentais da Pesquisa Operacional...",
+    "topics": "O que é PO, modelagem de problemas, função objetivo, restrições.",
+    "slidesUrl": "https://link-para-os-slides/aula01.pdf"
+  },
+  {
+    "id": 2,
+    "youtubeId": "CODIGO_DO_VIDEO_2",
+    "title": "Aula 02: Solução Gráfica e Método Simplex",
+    "description": "Aprendemos a resolver problemas de duas variáveis de forma gráfica e damos os primeiros passos no método Simplex.",
+    "topics": "Solução gráfica, região viável, introdução ao Simplex, tabela inicial.",
+    "slidesUrl": "https://link-para-os-slides/aula02.pdf"
+  },
+  {
+    "id": 3,
+    "youtubeId": "CODIGO_DO_VIDEO_3",
+    "title": "Aula 03: Dualidade em Programação Linear",
+    "description": "Exploramos o conceito de problemas duais e sua importância econômica.",
+    "topics": "Problema primal, problema dual, interpretação econômica.",
+    "slidesUrl": null
+  }
+]

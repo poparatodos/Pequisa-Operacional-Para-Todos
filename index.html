@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PO para Todos</title>
+    <link rel="icon" type="image/png" href="assets/images/logos/logo_u_unirio.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    
+    <button class="menu-toggle" aria-label="Abrir menu">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+    </svg>
+    <span>Menu</span>
+</button>
+
+    <nav class="side-menu">
+        <ul class="side-menu__list">
+            <li><a href="pages/po1.html"><i data-lucide="book-open"></i> Pesquisa Operacional I</a></li>
+            <li><a href="pages/po2.html"><i data-lucide="book-open-check"></i> Pesquisa Operacional II</a></li>
+            <li><a href="pages/problemas-classicos.html"><i data-lucide="puzzle"></i> Problemas Clássicos</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header class="hero-banner">
+            <img src="assets/images/logos/novo logo unirio - horizontal negativo.png" alt="Logo do Projeto" class="hero-banner__logo">
+            <h1>Pesquisa Operacional Para Todos</h1>
+            <p>Democratizando o ensino de Pesquisa Operacional</p>
+        </header>
+
+        <section id="carousel-container" class="carousel">
+
+            <div class="carousel-indicators">
+        </div>
+        
+            <div class="carousel-slides">
+    
+    <article id="sobre" class="carousel-slide active-slide">
+        <h2 class="section-title">📖 Sobre o Projeto</h2>
+        <p>O Projeto de Extensão em Pesquisa Operacional nasceu com o objetivo de democratizar o acesso ao conhecimento dessa disciplina fundamental da Engenharia de Produção e de áreas correlatas. A iniciativa busca aproximar a universidade da comunidade acadêmica e do público em geral, oferecendo conteúdos didáticos em formato acessível, atualizado e gratuito.</p>
+        <p>Aqui você encontrará:</p>
+        <ul class="about-features-list">
+            <li>
+                <i data-lucide="layers"></i>
+                <span><strong>Materiais organizados</strong> das disciplinas PO1 e PO2, com aulas em vídeo e apoio em textos e exercícios.</span>
+            </li>
+            <li>
+                <i data-lucide="puzzle"></i>
+                <span><strong>Explicações de problemas clássicos</strong> da Pesquisa Operacional, com exemplos práticos.</span>
+            </li>
+            <li>
+                <i data-lucide="code-2"></i>
+                <span><strong>Algoritmos implementados em Python</strong>, prontos para download e aplicação.</span>
+            </li>
+            <li>
+                <i data-lucide="users"></i>
+                <span>Um <strong>espaço de integração</strong> com as redes sociais do projeto e com a equipe de estudantes que o desenvolve.</span>
+            </li>
+        </ul>
+        <p>Nosso propósito é tornar o ensino de Pesquisa Operacional mais interativo, aberto e inclusivo, contribuindo para a formação de novos profissionais e ampliando o alcance da extensão universitária.</p>
+    </article>
+
+    <article id="equipe" class="carousel-slide">
+        <h2>Nossa Equipe</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="assets/images/team/nome_integrante1.jpg" alt="Foto de [Nome do Integrante]">
+                <h3>Nome do Integrante</h3>
+                <p>Engenharia de Produção. Interesse em otimização e logística. Desenvolvedor no projeto.</p>
+                <div class="social-icons">
+                    <a href="[LINK_LINKEDIN]" target="_blank"><i data-lucide="linkedin"></i></a>
+                    <a href="mailto:[EMAIL]"><i data-lucide="mail"></i></a>
+                </div>
+            </div>
+            </div>
+    </article> <article id="redes" class="carousel-slide">
+        <h2>Siga-nos</h2>
+        <p>Acompanhe nosso conteúdo e novidades pelo Instagram!</p>
+        <a href="[LINK_INSTAGRAM]" class="instagram-button" target="_blank">Ver no Instagram</a>
+        <div class="qr-code">
+            <img src="assets/images/qrcode.png" alt="QR Code para o Instagram">
+            <p>Aponte a câmera do seu celular</p>
+        </div>
+    </article>
+    
+</div>
+            
+            <button class="carousel-control prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="carousel-control next" onclick="moveSlide(1)">&#10095;</button>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2025 Pesquisa Operacional Para Todos - UNIRIO. Todos os direitos reservados.</p>
+        </footer>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/menu.js" defer></script> <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

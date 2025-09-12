@@ -1,0 +1,446 @@
+/* --- Configurações Globais e Variáveis de Cor --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --unirio-blue: #003366;
+    --secondary-blue: #005A9C;
+    --light-bg: #F8F9FA;
+    --dark-text: #343A40;
+    --highlight-color: #FFC107;
+    --menu-width: 250px;
+    --menu-width-collapsed: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+    /* Deixa espaço para o menu colapsado */
+    /* padding-left: var(--menu-width-collapsed); */
+    transition: padding-left 0.3s ease-in-out;
+}
+
+/* --- Menu Lateral --- */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px; /* Largura do menu quando aberto */
+    background-color: var(--unirio-blue);
+    color: white;
+    z-index: 1000;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    /* Comportamento inicial: ESCONDIDO para a esquerda */
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-in-out; 
+}
+
+body:has(.side-menu:hover) {
+    padding-left: var(--menu-width);
+}
+
+.side-menu:hover {
+    width: var(--menu-width);
+    align-items: flex-start;
+}
+
+.side-menu__brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+}
+
+.side-menu__logo {
+    width: 40px;
+    height: 40px;
+}
+
+.side-menu__title {
+    opacity: 0;
+    transition: opacity 0.2s linear;
+}
+
+.side-menu:hover .side-menu__title {
+    opacity: 1;
+    transition-delay: 0.1s;
+    
+}
+
+.side-menu__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* Opcional: mantém o menu centralizado se você usou a Opção 2 anteriormente */
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/* Estilo padrão para CADA link do menu */
+.side-menu__list a {
+    color: white; /* Cor do texto e do ícone */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.85rem;;
+    
+    /* --- ALINHAMENTO DO ÍCONE COM O TEXTO --- */
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaço entre o ícone e o texto */
+    
+    padding: 1rem 1.5rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; /* Transição suave */
+}
+
+/* EFEITO AO PASSAR O MOUSE (A CORREÇÃO PRINCIPAL ESTÁ AQUI) */
+.side-menu__list a:hover {
+    background-color: white;          /* O fundo do link fica BRANCO */
+    color: var(--unirio-blue);        /* O texto E o ícone ficam AZUIS */
+}
+
+/* --- Conteúdo Principal e Banner --- */
+.main-content {
+    width: 100%;
+}
+
+.hero-banner {
+    height: 60vh;
+    /* 1. Deixamos apenas a imagem de fundo estática */
+    background-image: url('/assets/images/background.jpg'); /* Ajustei o caminho para ../ */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    position: relative; /* 2. Essencial para posicionar a camada de animação */
+    overflow: hidden;   /* 3. Garante que nada vaze para fora do banner */
+}
+
+.hero-banner::before {
+    content: ''; /* Obrigatório para pseudo-elementos */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* A MÁGICA ESTÁ AQUI: O gradiente animado */
+    background: linear-gradient(-45deg, #001f3f, #005A9C, #003366, #007bff);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+
+    opacity: 0.8; /* Controla a intensidade da sobreposição de cor */
+}
+
+.hero-banner > * {
+    position: relative; /* Garante que o conteúdo tenha seu próprio contexto de posicionamento */
+    z-index: 2;         /* Coloca o conteúdo na frente da camada de animação */
+}
+
+.hero-banner__logo {
+    width: 250px;
+    height: auto;
+    margin-bottom: 0rem;
+    margin-top: 2rem;
+}
+
+.hero-banner h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.hero-banner p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* --- Estilos do Carrossel --- */
+.carousel {
+    position: relative;
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 3rem 5rem;
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.carousel-slides {
+    display: grid; /* <<-- MUDAMOS DE 'flex' PARA 'grid' */
+    position: relative;
+}
+
+.carousel-slide {
+    /* 1. Coloca todos os slides na mesma célula do grid (empilhando-os) */
+    grid-area: 1 / 1 / 2 / 2;
+    
+    /* 2. Controla a visibilidade com opacidade para o efeito de fade */
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    z-index: 1; /* Padrão para slides inativos */
+}
+
+.carousel-slide.active-slide {
+    opacity: 1;
+    z-index: 2; /* Slide ativo fica na frente */
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    /* Mantemos o translateY para centralizar, mas adicionaremos o scale no hover */
+    transform: translateY(-50%);
+    z-index: 11;
+
+    /* --- MUDANÇAS PRINCIPAIS --- */
+    background: transparent;      /* 1. Remove completamente o fundo */
+    border: none;                 /* 2. Garante que não haja bordas */
+    color: var(--secondary-blue); /* 3. Muda a cor da seta para ser visível (azul) */
+    font-size: 2.8rem;            /* 4. Aumenta bastante o tamanho da seta */
+    padding: 0 1rem;              /* 5. Mantém um espaçamento lateral */
+    
+    cursor: pointer;
+    /* Removemos o border-radius que criava o círculo */
+    transition: transform 0.2s ease, color 0.2s ease; /* Animação suave para o hover */
+}
+
+.carousel-control:hover {
+    color: var(--unirio-blue);  /* Escurece a seta ao passar o mouse */
+    /* Efeito sutil de crescimento para dar feedback visual */
+    transform: translateY(-50%) scale(1.1); 
+}
+
+/* Mantém o posicionamento individual de cada seta */
+.carousel-control.prev {
+    left: 5px; /* Aprox. 32px da borda */
+}
+
+.carousel-control.next {
+    right: 5px; /* Aprox. 32px da borda */
+}
+
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* --- Estilos do Carrossel Melhorado --- */
+.carousel {
+    position: relative;
+    max-width: 1100px; /* Caixa maior */
+    margin: 3rem auto;
+    padding: 3rem;
+    padding-top: 5rem; /* Mais padding no topo para dar espaço aos indicadores */
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* --- Estilos para os Indicadores no Topo --- */
+.carousel-indicators {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.indicator {
+    width: 30px;
+    height: 4px;
+    background-color: rgba(0, 51, 102, 0.3); /* Cor do traço inativo */
+    border-radius: 4px;
+    cursor: pointer;
+    overflow: hidden; /* Essencial para a animação da barra interna */
+}
+
+/* Barra de preenchimento para a animação */
+.indicator::before {
+    content: '';
+    display: block;
+    width: 0; /* Começa com largura zero */
+    height: 100%;
+    background-color: var(--unirio-blue); /* Cor do traço ativo */
+    border-radius: 4px;
+}
+
+/* Animação do traço ATIVO */
+.indicator.active-indicator::before {
+    width: 100%; /* Preenche totalmente o traço */
+    transition: width 5s linear; /* A animação dura 5s (sincronizada com o JS) */
+}
+
+/* Ajustes nos botões de seta para não conflitarem com os indicadores */
+.carousel-control {
+    z-index: 11; /* Garante que as setas fiquem acima de tudo */
+}
+
+/* --- Estilos específicos dos slides (Equipe, Redes, etc.) --- */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.team-card {
+    text-align: center;
+}
+.team-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+    border: 3px solid var(--unirio-blue);
+}
+.social-icons a {
+    color: var(--secondary-blue);
+    margin: 0 0.5rem;
+}
+
+/* --- Estilos para o Botão do Menu --- */
+.menu-toggle {
+    /* Suas propriedades existentes (position, z-index, background, etc.) */
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+    background: transparent;
+    color: white; /* Cor do ícone e do texto */
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+
+    /* --- ADIÇÕES PARA ALINHAMENTO E ESTILO --- */
+    display: flex;        /* Ativa o alinhamento flexível (lado a lado) */
+    align-items: center;  /* Centraliza verticalmente o ícone e o texto */
+    gap: 8px;             /* Cria um espaço de 8px entre o ícone e o texto */
+}
+
+/* Crie esta NOVA REGRA para estilizar o texto "Menu" */
+.menu-toggle span {
+    font-family: 'Poppins', sans-serif; /* Garante que a fonte seja a mesma do site */
+    font-size: 1.2rem;      /* Tamanho do texto (ajuste como preferir) */
+    font-weight: 500;       /* Deixa o texto com um peso médio (nem muito fino, nem negrito) */
+    
+    /* A cor do span será herdada do 'color: white' do .menu-toggle */
+}
+
+.menu-toggle:hover {
+    color: #cccccc; /* Um pequeno efeito para o hover, deixando o branco um pouco cinza */
+}
+
+
+
+
+
+/* NOVA CLASSE: Estado do menu quando ABERTO */
+.side-menu--open {
+    transform: translateX(0); /* Move o menu para a posição visível */
+    box-shadow: 5px 0px 15px rgba(0,0,0,0.2);
+}
+
+/* Ajustes nos itens do menu para o novo layout */
+.side-menu__brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1.5rem; /* Aumentei o padding */
+    margin-bottom: 2rem;
+}
+.side-menu__logo {
+    width: 40px;
+    height: 40px;
+}
+.side-menu__list a {
+    padding: 1rem 1.5rem; /* Aumentei o padding */
+    /* ... o resto dos estilos de 'a' continuam os mesmos ... */
+}
+
+/* --- Estilos para a Seção "Sobre o Projeto" --- */
+
+/* Estilo para o título da seção */
+#sobre .section-title {
+    color: var(--unirio-blue);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+/* Estilo para os parágrafos dentro da seção */
+#sobre p {
+    font-size: 1rem;
+    line-height: 1.7; /* Aumenta o espaçamento entre as linhas para melhor leitura */
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+/* Estilo para a lista de funcionalidades */
+.about-features-list {
+    list-style: none; /* Remove as bolinhas padrão da lista */
+    padding-left: 0;  /* Remove o espaçamento padrão da lista */
+    margin: 1.5rem 0;
+}
+
+/* Estilo para cada item da lista */
+.about-features-list li {
+    display: flex; /* Alinha o ícone e o texto lado a lado */
+    align-items: flex-start; /* Alinha o topo do ícone com o topo do texto */
+    gap: 15px; /* Espaço entre o ícone e o texto */
+    margin-bottom: 1.2rem; /* Espaço entre os itens da lista */
+    line-height: 1.6;
+}
+
+/* Estilo para os ícones da lista */
+.about-features-list li i {
+    color: var(--secondary-blue); /* Deixa o ícone com o azul secundário para destaque */
+    flex-shrink: 0; /* Impede que o ícone seja esmagado ou encolhido */
+    margin-top: 5px; /* Ajuste fino para alinhar perfeitamente com o texto */
+}
+
+/* Opcional: Estilo para o texto em negrito dentro da lista */
+.about-features-list li strong {
+    color: var(--unirio-blue);
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Adaptações para mobile (exemplo) */
+@media (max-width: 768px) {
+    body {
+        padding-left: 0; /* Em telas pequenas, o menu não ocupa espaço */
+    }
+    .side-menu {
+        width: 0; /* Menu escondido por padrão */
+        /* Aqui você precisaria de um botão (hambúrguer) para abrir com JS */
+    }
+}
