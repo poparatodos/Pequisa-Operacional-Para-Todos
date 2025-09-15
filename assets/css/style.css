@@ -169,90 +169,43 @@ body:has(.side-menu:hover) {
     font-weight: 300;
 }
 
-/* --- Estilos do Carrossel --- */
+/* ==========================================================================
+   CARROSSEL - VERSÃO ORGANIZADA
+   ========================================================================== */
+
+/* --- Container Principal --- */
 .carousel {
     position: relative;
     max-width: 1100px;
-    margin: 2rem auto;
-    padding: 3rem 5rem;
-    background-color: white;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.carousel-slides {
-    display: grid; /* <<-- MUDAMOS DE 'flex' PARA 'grid' */
-    position: relative;
-}
-
-.carousel-slide {
-    /* 1. Coloca todos os slides na mesma célula do grid (empilhando-os) */
-    grid-area: 1 / 1 / 2 / 2;
-    
-    /* 2. Controla a visibilidade com opacidade para o efeito de fade */
-    opacity: 0;
-    transition: opacity 0.6s ease-in-out;
-    z-index: 1; /* Padrão para slides inativos */
-}
-
-.carousel-slide.active-slide {
-    opacity: 1;
-    z-index: 2; /* Slide ativo fica na frente */
-}
-
-.carousel-control {
-    position: absolute;
-    top: 50%;
-    /* Mantemos o translateY para centralizar, mas adicionaremos o scale no hover */
-    transform: translateY(-50%);
-    z-index: 11;
-
-    /* --- MUDANÇAS PRINCIPAIS --- */
-    background: transparent;      /* 1. Remove completamente o fundo */
-    border: none;                 /* 2. Garante que não haja bordas */
-    color: var(--secondary-blue); /* 3. Muda a cor da seta para ser visível (azul) */
-    font-size: 2.8rem;            /* 4. Aumenta bastante o tamanho da seta */
-    padding: 0 1rem;              /* 5. Mantém um espaçamento lateral */
-    
-    cursor: pointer;
-    /* Removemos o border-radius que criava o círculo */
-    transition: transform 0.2s ease, color 0.2s ease; /* Animação suave para o hover */
-}
-
-.carousel-control:hover {
-    color: var(--unirio-blue);  /* Escurece a seta ao passar o mouse */
-    /* Efeito sutil de crescimento para dar feedback visual */
-    transform: translateY(-50%) scale(1.1); 
-}
-
-/* Mantém o posicionamento individual de cada seta */
-.carousel-control.prev {
-    left: 5px; /* Aprox. 32px da borda */
-}
-
-.carousel-control.next {
-    right: 5px; /* Aprox. 32px da borda */
-}
-
-
-.prev { left: 10px; }
-.next { right: 10px; }
-
-/* --- Estilos do Carrossel Melhorado --- */
-.carousel {
-    position: relative;
-    max-width: 1100px; /* Caixa maior */
     margin: 3rem auto;
-    padding: 3rem;
-    padding-top: 5rem; /* Mais padding no topo para dar espaço aos indicadores */
+    padding: 3rem 5rem;
+    padding-top: 5rem;
     background-color: white;
     box-shadow: 0 4px 20px rgba(0,0,0,0.12);
     border-radius: 12px;
     overflow: hidden;
 }
 
-/* --- Estilos para os Indicadores no Topo --- */
+/* --- Container dos Slides --- */
+.carousel-slides {
+    display: grid;
+    position: relative;
+}
+
+/* --- Estilo de Cada Slide --- */
+.carousel-slide {
+    grid-area: 1 / 1 / 2 / 2; /* Empilha os slides */
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    z-index: 1;
+}
+
+.carousel-slide.active-slide {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* --- Indicadores no Topo --- */
 .carousel-indicators {
     position: absolute;
     top: 25px;
@@ -266,31 +219,52 @@ body:has(.side-menu:hover) {
 .indicator {
     width: 30px;
     height: 4px;
-    background-color: rgba(0, 51, 102, 0.3); /* Cor do traço inativo */
+    background-color: rgba(0, 51, 102, 0.3);
     border-radius: 4px;
     cursor: pointer;
-    overflow: hidden; /* Essencial para a animação da barra interna */
+    overflow: hidden;
 }
 
-/* Barra de preenchimento para a animação */
 .indicator::before {
     content: '';
     display: block;
-    width: 0; /* Começa com largura zero */
+    width: 0;
     height: 100%;
-    background-color: var(--unirio-blue); /* Cor do traço ativo */
+    background-color: var(--unirio-blue);
     border-radius: 4px;
 }
 
-/* Animação do traço ATIVO */
 .indicator.active-indicator::before {
-    width: 100%; /* Preenche totalmente o traço */
-    transition: width 5s linear; /* A animação dura 5s (sincronizada com o JS) */
+    width: 100%;
+    transition: width 5s linear;
 }
 
-/* Ajustes nos botões de seta para não conflitarem com os indicadores */
+/* --- Setas de Navegação --- */
 .carousel-control {
-    z-index: 11; /* Garante que as setas fiquem acima de tudo */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 11;
+    background: transparent;
+    border: none;
+    color: var(--secondary-blue);
+    font-size: 2.8rem;
+    padding: 0 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.carousel-control:hover {
+    color: var(--unirio-blue);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-control.prev {
+    left: 2rem;
+}
+
+.carousel-control.next {
+    right: 2rem;
 }
 
 /* --- Estilos específicos dos slides (Equipe, Redes, etc.) --- */
@@ -422,6 +396,33 @@ body:has(.side-menu:hover) {
     color: var(--unirio-blue);
 }
 
+/* Estilos para o slide de Redes Sociais */
+.instagram-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.instagram-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--unirio-blue);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 1rem 0;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.instagram-button:hover {
+    background-color: var(--secondary-blue);
+    transform: scale(1.05);
+}
+
 @keyframes gradientShift {
     0% {
         background-position: 0% 50%;
@@ -434,13 +435,62 @@ body:has(.side-menu:hover) {
     }
 }
 
-/* Adaptações para mobile (exemplo) */
+
+/* ==========================================================================
+   ESTILOS PARA DISPOSITIVOS MÓVEIS (COM CORREÇÃO FINAL)
+   ========================================================================== */
+
 @media (max-width: 768px) {
+
+    /* --- Cabeçalho e Corpo --- */
     body {
-        padding-left: 0; /* Em telas pequenas, o menu não ocupa espaço */
+        padding-top: 0px; 
     }
-    .side-menu {
-        width: 0; /* Menu escondido por padrão */
-        /* Aqui você precisaria de um botão (hambúrguer) para abrir com JS */
+    .main-header {
+        height: 60px;
+        padding: 0 15px;
+    }
+    .header-title {
+        margin-left: 10px;
+        font-size: 1rem;
+    }
+
+    /* --- Banner --- */
+    .hero-banner h1 {
+        font-size: 2.2rem;
+    }
+    .hero-banner p {
+        font-size: 1rem;
+    }
+    .hero-banner__logo {
+        width: 180px;
+    }
+
+    /* --- Carrossel (COM !important) --- */
+    .carousel {
+        max-width: 95vw;
+        padding: 2.5rem 1.5rem !important; /* Força o padding correto */
+        padding-top: 4.5rem !important;
+    }
+    
+    /* --- A CORREÇÃO MAIS IMPORTANTE --- */
+    .carousel-control {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important; /* Impede qualquer clique */
+    }
+
+    /* --- Outros Ajustes --- */
+    #sobre .section-title {
+        font-size: 1.5rem;
+    }
+    #sobre p {
+        font-size: 0.95rem;
+    }
+    .about-features-list li {
+        gap: 10px;
+    }
+    .team-grid {
+        grid-template-columns: 1fr;
     }
 }

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // --- Variáveis de Controle ---
     let currentSlide = 0;
     let autoplayInterval = null;
-    const autoplayDuration = 5000; // 5 segundos
+    const autoplayDuration = 10000; // 5 segundos
 
     // Se não houver slides, o script para aqui.
     if (slides.length === 0) return;
