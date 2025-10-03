@@ -323,9 +323,21 @@ body:has(.side-menu:hover) {
     color: #cccccc; /* Um pequeno efeito para o hover, deixando o branco um pouco cinza */
 }
 
+.index-box {
+    font-family: 'Poppins', sans-serif;
+    margin-top: 20px;
+    align-items: center;
+    text-align: center;
+    color: #003366;
+    text-decoration: none;
+}
 
-
-
+.index-list {
+    font-family: 'Poppins', sans-serif;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+}
 
 /* NOVA CLASSE: Estado do menu quando ABERTO */
 .side-menu--open {
