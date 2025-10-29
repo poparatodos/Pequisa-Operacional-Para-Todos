@@ -57,10 +57,45 @@ document.addEventListener("DOMContentLoaded", function() {
         startAutoplay();
     }
 
+    const carouselContainer = document.querySelector(".carousel"); // Seleciona o container principal
+
+    // ===== NOVA FUNÇÃO PARA AJUSTAR ALTURA PÓS-CARREGAMENTO =====
+    function adjustCarouselHeight() {
+        let maxHeight = 0;
+        slides.forEach(slide => {
+            // Usamos scrollHeight para medir a altura real do conteúdo interno
+            if (slide.scrollHeight > maxHeight) { 
+                maxHeight = slide.scrollHeight;
+            }
+        });
+
+        if (carouselContainer && maxHeight > 0) {
+            // Adiciona um pouco de padding extra (o padding interno do slide)
+            const slidePaddingTop = parseFloat(window.getComputedStyle(slides[0]).paddingTop) || 0;
+            const slidePaddingBottom = parseFloat(window.getComputedStyle(slides[0]).paddingBottom) || 0;
+            
+            // Aplica a altura ao container principal (ou ao .carousel-slides se preferir)
+            carouselContainer.style.minHeight = `${maxHeight + slidePaddingTop + slidePaddingBottom}px`; 
+        }
+    }
+
     // --- INICIALIZAÇÃO DO CARROSSEL ---
+    // ===== CHAMA A FUNÇÃO DE AJUSTE =====
+    // Usamos window.onload que espera TUDO carregar (incluindo imagens e scripts externos)
+    window.onload = () => {
+        // Damos um pequeno delay extra para garantir que o widget tenha renderizado
+        setTimeout(adjustCarouselHeight, 500); // Espera meio segundo
+    };
 
+    // Opcional: Reajustar em caso de redimensionamento da janela
+    window.addEventListener('resize', () => {
+        // Limpa a altura anterior para recalcular
+        if (carouselContainer) carouselContainer.style.minHeight = ''; 
+        setTimeout(adjustCarouselHeight, 100); // Pequeno delay no resize
+    });
+    
     createIndicators();
-
+    
     // Adiciona eventos de clique aos botões de seta
     prevButton.addEventListener('click', () => {
         const prevSlideIndex = (currentSlide - 1 + slides.length) % slides.length;
