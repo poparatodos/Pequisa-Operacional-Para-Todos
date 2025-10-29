@@ -6,6 +6,7 @@
     <title>Pesquisa Operacional II</title>
     <link rel="icon" type="image/png" href="../assets/images/logos/logo_u_unirio.png">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/pages.css"> <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
@@ -34,28 +35,18 @@
             <a>Videoaulas e materiais da disciplina de PO II.</a>
         </header>
 
-
-        <section class="index-box">
-            <h2>Index</h2>
-            <ul class="index-list">
-                <li> MATERIAL 1 </a></li>
-                <li> MATERIAL 2 </a></li>
-                <li> MATERIAL 3 </a></li>
-            </ul>
-        </section>
-
-        <section id="viewer" class="carousel">
-                <article class="carousel-slide">
-                    <iframe src=""></iframe>
-                </article>
+        <section class="lesson-container">
+            <div id="accordion-wrapper" data-json-source="po2_videos.json">
+                <p>Carregando aulas...</p>
             </div>
-            <button class="carousel-control prev" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="carousel-control next" onclick="moveSlide(1)">&#10095;</button>
         </section>
 
     </main>
 
-    <script src="../assets/js/main.js"></script>
     <script src="../assets/js/menu.js" defer></script>
+    <script src="../assets/js/video-loader.js"></script> <script>
+        lucide.createIcons();
+    </script>
+
 </body>
 </html>

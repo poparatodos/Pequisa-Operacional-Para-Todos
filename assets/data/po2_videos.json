@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "youtubeId": "v5KRSzU2E4U",
+    "title": "Aula 1: Introdução à Pesquisa Operacional",
+    "description": "Aula introdutória sobre os conceitos básicos de Pesquisa Operacional e Programação Linear.",
+    "topics": "Definição de PO, Fases de um estudo em PO e Introdução a Programação Linear.",
+    "slidesUrl": "https://link-para-os-slides/aula01.pdf"
+  }
+]

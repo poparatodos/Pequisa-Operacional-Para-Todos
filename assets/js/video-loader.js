@@ -2,15 +2,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const accordionWrapper = document.getElementById('accordion-wrapper');
 
+    // --- (NOVO!) VERIFICA SE O CONTAINER EXISTE ANTES ---
+    if (!accordionWrapper) {
+        // Se a página não tem o #accordion-wrapper, o script não faz nada.
+        // console.log('Container #accordion-wrapper não encontrado nesta página.'); 
+        return; 
+    }
+
+    // --- (NOVO!) LÊ O NOME DO ARQUIVO JSON DO ATRIBUTO data-* ---
+    const jsonFileName = accordionWrapper.getAttribute('data-json-source');
+
+    // Se o atributo não for encontrado, exibe um erro
+    if (!jsonFileName) {
+        accordionWrapper.innerHTML = '<p>Erro: Fonte de dados JSON não especificada no HTML (data-json-source).</p>';
+        console.error('Atributo data-json-source não encontrado em #accordion-wrapper.');
+        return; // Para a execução
+    }
+
+    // --- (NOVO!) CONSTRÓI O CAMINHO COMPLETO DINAMICAMENTE ---
+    const jsonPath = `../assets/data/${jsonFileName}`;
     // Função principal para carregar e construir o HTML
+
     async function loadLessons() {
         try {
-            const response = await fetch('../assets/data/po1_videos.json');
-            if (!response.ok) throw new Error('Falha ao carregar dados das aulas.');
+            // --- (MODIFICADO!) USA O CAMINHO DINÂMICO ---
+            const response = await fetch(jsonPath); // <<-- Mudou aqui!
+            
+            if (!response.ok) {
+                // (MELHORADO!) Mensagem de erro mais específica
+                throw new Error(`Falha ao carregar ${jsonPath}. Status: ${response.status}`);
+            }
             
             const lessons = await response.json();
-            if (!accordionWrapper) return;
-            accordionWrapper.innerHTML = '';
+            // if (!accordionWrapper) return; // Checagem já feita acima
+            accordionWrapper.innerHTML = ''; // Limpa o "Carregando..."
 
             // Cria o HTML para cada aula
             lessons.forEach(lesson => {
@@ -107,7 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error('Erro ao carregar aulas:', error);
-            accordionWrapper.innerHTML = '<p>Não foi possível carregar as aulas. Tente novamente mais tarde.</p>';
+            // (MELHORADO!) Mensagem de erro mais específica
+            accordionWrapper.innerHTML = `<p>Não foi possível carregar as aulas de ${jsonFileName}. Detalhes: ${error.message}</p>`;
         }
     }
 
