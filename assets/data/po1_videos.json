@@ -80,11 +80,28 @@
   {
     "id": 7,
     "youtubeId": null,
-    "title": "Aula 07: Dualidade [PLAYLIST - PREENCHER MANUALMENTE]",
+    "title": "Aula 07: Dualidade",
     "description": "Teoria da dualidade e seus teoremas.",
-    "topics": "Dualidade, Teoria da Dualidade, Teoremas da Dualidade.",
+    "topics": "Dualidade, Teoria da Dualidade, Teoremas da Dualidade, TFC.",
     "slidesUrl": null,
-    "subVideos": null
+    "subVideos": [
+      {
+        "title": "Dualidade pt.1",
+        "youtubeId": "LkJlsxEtaE4"
+      },
+      {
+        "title": "Dualidade pt.2 - Relações entre o Primal e o Dual",
+        "youtubeId": "RU10F3dU0Xo"
+      },
+      {
+        "title": "Algoritmo Simplex Dual",
+        "youtubeId": "i2fcz5FRRos"
+      },
+      {
+        "title": "Exemplos de Dualidade",
+        "youtubeId": "7Gc2aiE7M7U"
+      }
+    ]
   },
   {
     "id": 8,
@@ -98,11 +115,24 @@
   {
     "id": 9,
     "youtubeId": null,
-    "title": "Aula 09: Análise de Sensibilidade [PLAYLIST - PREENCHER MANUALMENTE]",
-    "description": "Analisar alterações no PPL e usar o software para fazer análise de sensibilidade.",
+    "title": "Aula 09: Análise de Sensibilidade e Pós-otimização Com Solver",
+    "description": "Analisar alterações no PPL e usar o software Solver para fazer análise de sensibilidade.",
     "topics": "Análise de Sensibilidade, Pós-otimização, Software de PPL.",
     "slidesUrl": null,
-    "subVideos": null
+    "subVideos": [
+      {
+        "title": "Análise de Sensibilidade e Pós-otimização pt.1",
+        "youtubeId": "Z-duqQJFa-4"
+      },
+      {
+        "title": "Análise de Sensibilidade e Pós-otimização pt.2",
+        "youtubeId": "C0tpwFouwMA"
+      },
+      {
+        "title": "Análise de Sensibilidade e Pós-otimização pt.3",
+        "youtubeId": "nHPLI1uM0ks"
+      }
+    ]
   },
   {
     "id": 10,
