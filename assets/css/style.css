@@ -118,7 +118,7 @@ body:has(.side-menu:hover) {
 .hero-banner {
     height: 48vh;
     /* 1. Deixamos apenas a imagem de fundo estática */
-    background-image: url('../assets/images/background.jpg'); /* Ajustei o caminho para ../ */
+    background-image: url('../images/background.jpg'); /* Ajustei o caminho para ../ */
     background-size: cover;
     background-position: center;
     color: white;
@@ -165,7 +165,7 @@ body:has(.side-menu:hover) {
     /* --- Imagem & Estilo (CORRIGIDOS) --- */
     
     /* 1. Corrigido o caminho para funcionar no GitHub Pages */
-    background-image: url('../assets/images/grafo-modelo-3.png'); 
+    background-image: url('../images/grafo-modelo-3.png'); 
     background-size: contain;
     background-repeat: no-repeat;
     
@@ -224,6 +224,7 @@ body:has(.side-menu:hover) {
     box-shadow: 0 4px 20px rgba(0,0,0,0.12);
     border-radius: 12px;
     overflow: hidden;
+    min-height: 650px; /* Ajuste este valor se necessário */
 }
 
 /* --- Container dos Slides --- */
