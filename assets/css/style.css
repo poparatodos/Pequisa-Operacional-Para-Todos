@@ -116,7 +116,7 @@ body:has(.side-menu:hover) {
 }
 
 .hero-banner {
-    height: 60vh;
+    height: 48vh;
     /* 1. Deixamos apenas a imagem de fundo estática */
     background-image: url('/assets/images/background.jpg'); /* Ajustei o caminho para ../ */
     background-size: cover;
@@ -147,16 +147,41 @@ body:has(.side-menu:hover) {
     opacity: 0.8; /* Controla a intensidade da sobreposição de cor */
 }
 
+/* ==============================================
+   SOBREPOSIÇÃO DO GRAFO NO BANNER
+   ============================================== */
+
+.hero-banner::after {
+    content: '';
+    position: absolute;
+    z-index: 1; 
+    
+    /* --- Posição & Tamanho (AJUSTADOS) --- */
+    width: 1400px;     /* Maior */
+    height: 900px;    /* Maior */
+    top: -280px;       /* Mais para cima */
+    right: -900px;     /* Mais para a direita (vazando) */
+
+    /* --- Imagem & Estilo (CORRIGIDOS) --- */
+    
+    /* 1. Corrigido o caminho para funcionar no GitHub Pages */
+    background-image: url('/assets/images/grafo-modelo-3.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+    /* 2. Corrigida a opacidade para o efeito sutil */
+    opacity: 0.15; 
+}
 .hero-banner > * {
     position: relative; /* Garante que o conteúdo tenha seu próprio contexto de posicionamento */
     z-index: 2;         /* Coloca o conteúdo na frente da camada de animação */
 }
 
+/* Regra AJUSTADA para os logos individuais */
 .hero-banner__logo {
-    width: 250px;
-    height: auto;
-    margin-bottom: 0rem;
-    margin-top: 2rem;
+    max-height: 180px;   /* Controlamos pela altura para manter o balanço visual */
+    width: auto;        /* A largura se ajustará automaticamente */
+    /* Removemos as margens, pois agora elas estão no container */
 }
 
 .hero-banner h1 {
@@ -167,6 +192,21 @@ body:has(.side-menu:hover) {
 .hero-banner p {
     font-size: 1.2rem;
     font-weight: 300;
+}
+
+/* Container que agrupa os logos */
+.hero-banner__logo-container {
+    display: flex;            /* Coloca os itens lado a lado */
+    align-items: center;      /* Alinha verticalmente os logos (caso tenham alturas diferentes) */
+    justify-content: center;  /* Centraliza o grupo de logos */
+    gap: 2.5rem;              /* Cria um espaço entre os dois logos */
+    margin-top: 2rem;         /* Mantém sua margem original */
+    margin-bottom: 0rem;
+}
+
+/* Esta nova regra afeta APENAS a logo da PROEX */
+.hero-banner__logo--proex {
+    max-height: 90px; /* <<-- Ajuste este valor! */
 }
 
 /* ==========================================================================
@@ -236,7 +276,7 @@ body:has(.side-menu:hover) {
 
 .indicator.active-indicator::before {
     width: 100%;
-    transition: width 5s linear;
+    transition: width 20s linear;
 }
 
 /* --- Setas de Navegação --- */
@@ -474,8 +514,17 @@ body:has(.side-menu:hover) {
     .hero-banner p {
         font-size: 1rem;
     }
+    
+    .hero-banner__logo-container {
+        gap: 1.5rem; /* Diminui o espaço entre os logos no celular */
+    }
+
     .hero-banner__logo {
-        width: 180px;
+        max-height: 70px; /* Diminui um pouco o tamanho dos logos no celular */
+    }
+
+    .hero-banner::after {
+        display: none;
     }
 
     /* --- Carrossel (COM !important) --- */

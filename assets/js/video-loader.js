@@ -1,66 +1,159 @@
-// Função que executa assim que a página carrega
 document.addEventListener('DOMContentLoaded', () => {
-    loadVideos();
-});
 
-// Função assíncrona para buscar e renderizar os vídeos
-async function loadVideos() {
-    try {
-        // Busca o nosso arquivo JSON
-        const response = await fetch('../assets/data/po1_videos.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const videos = await response.json();
+    const accordionWrapper = document.getElementById('accordion-wrapper');
 
-        // Pega o container no HTML
-        const container = document.getElementById('video-list-container');
-        if (!container) return; // Para de executar se não achar o container
+    // Função principal para carregar e construir o HTML
+    async function loadLessons() {
+        try {
+            const response = await fetch('../assets/data/po1_videos.json');
+            if (!response.ok) throw new Error('Falha ao carregar dados das aulas.');
+            
+            const lessons = await response.json();
+            if (!accordionWrapper) return;
+            accordionWrapper.innerHTML = '';
 
-        // Limpa qualquer conteúdo que possa estar lá (ex: uma mensagem de "carregando...")
-        container.innerHTML = '';
+            // Cria o HTML para cada aula
+            lessons.forEach(lesson => {
+                
+                // --- 1. Prepara o HTML dos Materiais ---
+                const materialHtml = (lesson.slidesUrl && lesson.slidesUrl.trim() !== "")
+                    ? `<div class="material-item">
+                           <a href="${lesson.slidesUrl}" target="_blank">
+                               <i data-lucide="file-text"></i>
+                               <span>Slides da Aula / Material de Apoio</span>
+                           </a>
+                       </div>`
+                    : '<p>Nenhum material de apoio disponível para esta aula.</p>';
 
-        // Cria o HTML para cada vídeo da lista
-        videos.forEach(video => {
-            // Cria um link para os slides somente se a URL existir
-            const slidesLink = video.slidesUrl 
-                ? `<a href="${video.slidesUrl}" class="support-link" target="_blank">
-                       <i data-lucide="file-text"></i> Baixar Slides da Aula
-                   </a>`
-                : ''; // Se não existir, a string fica vazia
+                // --- 2. Prepara o HTML do Conteúdo de Vídeo (com a nova lógica) ---
+                let videoContentHtml = '';
+                
+                if (lesson.subVideos && lesson.subVideos.length > 0) {
+                    // SE TEM SUB-VÍDEOS, constrói as ABAS
+                    let tabButtons = '';
+                    let tabPanes = '';
+                    lesson.subVideos.forEach((video, index) => {
+                        const isActive = index === 0 ? 'active' : '';
+                        tabButtons += `<button class="tab-btn ${isActive}" data-tab="video-${lesson.id}-${index}">${video.title}</button>`;
+                        tabPanes += `<div class="video-tab-pane ${isActive}" id="video-${lesson.id}-${index}">
+                                       <div class="video-container">
+                                           <iframe src="https://www.youtube.com/embed/${video.youtubeId}" 
+                                                   title="${video.title}" frameborder="0" 
+                                                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                                   allowfullscreen loading="lazy">
+                                           </iframe>
+                                       </div>
+                                   </div>`;
+                    });
+                    videoContentHtml = `
+                        <div class="video-tab-container">
+                            <nav class="tab-navigation">${tabButtons}</nav>
+                            <div class="tab-content">${tabPanes}</div>
+                        </div>
+                    `;
+                } else if (lesson.youtubeId) {
+                    // SE TEM SÓ 1 VÍDEO, constrói o player único
+                    videoContentHtml = `
+                        <div class="video-container">
+                            <iframe 
+                                src="https://www.youtube.com/embed/${lesson.youtubeId}" 
+                                title="${lesson.title}" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                    `;
+                } else {
+                    // Se não tiver nenhum
+                    videoContentHtml = '<p>O vídeo para esta aula será disponibilizado em breve.</p>';
+                }
 
-            const videoHtml = `
-                <article class="video-item">
-                    <div class="video-container">
-                        <iframe 
-                            src="https://www.youtube.com/embed/${video.youtubeId}" 
-                            title="${video.title}" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen
-                            loading="lazy">
-                        </iframe>
+
+                // --- 3. Monta o HTML FINAL do item (na sua estrutura) ---
+                const itemHtml = `
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>${lesson.title}</span>
+                            <i data-lucide="chevron-down" class="accordion-arrow"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-content-inner">
+                                
+                                <div class="lesson-details">
+                                    <h4>Descrição da Aula</h4>
+                                    <p>${lesson.description || 'Sem descrição.'}</p>
+                                    <h4>Tópicos Abordados</h4>
+                                    <p>${lesson.topics || 'Sem tópicos definidos.'}</p>
+                                </div>
+
+                                ${videoContentHtml}
+
+                                <div class="material-section">
+                                    <h4>Materiais de Apoio</h4>
+                                    ${materialHtml}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="video-description">
-                        <h3>${video.title}</h3>
-                        <p>${video.description}</p>
-                        <p><strong>Tópicos:</strong> ${video.topics}</p>
-                        ${slidesLink}
-                    </div>
-                </article>
-            `;
-            // Adiciona o HTML do vídeo criado ao container
-            container.innerHTML += videoHtml;
-        });
+                `;
+                accordionWrapper.innerHTML += itemHtml;
+            });
 
-        // Re-ativa os ícones Lucide depois de adicioná-los dinamicamente
-        lucide.createIcons();
+            lucide.createIcons();
+            addAccordionEvents();
+            addTabEvents(); // Ativa a nova função das abas
 
-    } catch (error) {
-        console.error("Falha ao carregar os vídeos:", error);
-        const container = document.getElementById('video-list-container');
-        if (container) {
-            container.innerHTML = '<p>Ocorreu um erro ao carregar os vídeos. Por favor, tente novamente mais tarde.</p>';
+        } catch (error) {
+            console.error('Erro ao carregar aulas:', error);
+            accordionWrapper.innerHTML = '<p>Não foi possível carregar as aulas. Tente novamente mais tarde.</p>';
         }
     }
-}
+
+    // Função que faz o accordion abrir e fechar (sem mudanças)
+    function addAccordionEvents() {
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                header.classList.toggle('active');
+
+                if (header.classList.contains('active')) {
+                    header.setAttribute('aria-expanded', 'true');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                } else {
+                    header.setAttribute('aria-expanded', 'false');
+                    content.style.maxHeight = '0px';
+                }
+            });
+        });
+    }
+
+    // (NOVA FUNÇÃO) Adiciona eventos de clique para as Abas
+    function addTabEvents() {
+        const tabContainers = document.querySelectorAll('.video-tab-container');
+        
+        tabContainers.forEach(container => {
+            const tabButtons = container.querySelectorAll('.tab-btn');
+            const tabPanes = container.querySelectorAll('.video-tab-pane');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    // Impede que o clique na aba feche o accordion
+                    e.stopPropagation(); 
+
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabPanes.forEach(pane => pane.classList.remove('active'));
+
+                    button.classList.add('active');
+                    const tabId = button.getAttribute('data-tab');
+                    container.querySelector(`#${tabId}`).classList.add('active');
+                });
+            });
+        });
+    }
+
+    // Inicia o processo
+    loadLessons();
+});

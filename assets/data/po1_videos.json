@@ -1,26 +1,116 @@
 [
   {
     "id": 1,
-    "youtubeId": "CODIGO_DO_VIDEO_1",
-    "title": "Aula 01: Introdução à Programação Linear",
-    "description": "Nesta aula, exploramos os conceitos fundamentais da Pesquisa Operacional...",
-    "topics": "O que é PO, modelagem de problemas, função objetivo, restrições.",
+    "youtubeId": "v5KRSzU2E4U",
+    "title": "Aula 1: Introdução à Pesquisa Operacional",
+    "description": "Aula introdutória sobre os conceitos básicos de Pesquisa Operacional e Programação Linear.",
+    "topics": "Definição de PO, Fases de um estudo em PO e Introdução a Programação Linear.",
     "slidesUrl": "https://link-para-os-slides/aula01.pdf"
   },
   {
     "id": 2,
     "youtubeId": "CODIGO_DO_VIDEO_2",
-    "title": "Aula 02: Solução Gráfica e Método Simplex",
+    "title": "Aula 02: Resolução Gráfica de PPL",
     "description": "Aprendemos a resolver problemas de duas variáveis de forma gráfica e damos os primeiros passos no método Simplex.",
-    "topics": "Solução gráfica, região viável, introdução ao Simplex, tabela inicial.",
+    "topics": "Resolver PPLs com duas variáveis de decisão pelo método gráfico.",
     "slidesUrl": "https://link-para-os-slides/aula02.pdf"
   },
   {
     "id": 3,
     "youtubeId": "CODIGO_DO_VIDEO_3",
-    "title": "Aula 03: Dualidade em Programação Linear",
-    "description": "Exploramos o conceito de problemas duais e sua importância econômica.",
-    "topics": "Problema primal, problema dual, interpretação econômica.",
-    "slidesUrl": null
+    "title": "Aula 03: Software para resolver PPLs",
+    "description": "Aprender a utilizar softwares na resolução de PPLs: SOLVER, LINDO e LINGO",
+    "topics": "PPLs, SOLVER, LINDO e LINGO",
+    "slidesUrl": null,
+    "subVideos": [
+      {
+        "title": "SOLVER pt. 1",
+        "youtubeId": "pNNsL4GzNg8"
+      },
+      {
+        "title": "SOLVER pt. 2",
+        "youtubeId": "IMG0vcnQeX0"
+      },
+      {
+        "title": "LINDO",
+        "youtubeId": "vFSXrhpg3r8"
+      },
+      {
+        "title": "LINGO",
+        "youtubeId": "BCnLTTcSDGg"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "youtubeId": "CODIGO_DO_VIDEO_3",
+    "title": "Aula 04: Equivalência entre PPLs e Modelagem Matemática de PPL",
+    "description": "Aprender a fazer a formulação de problemas de programação linear",
+    "topics": "Equivalencia entre PPLs e Modelagem Matemática de PPL",
+    "slidesUrl": null,
+    "subVideos": [
+      {
+        "title": "Equivalencia",
+        "youtubeId": "xQtosRABD2E"
+      },
+      {
+        "title": "Modelagem",
+        "youtubeId": "mw9Mpe-PvZ4"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "youtubeId": "JTcUGbG8pg0",
+    "title": "Aula 05: Algoritmo Simplex",
+    "description": "Aprender resolução de PPL pelo algoritmo simplex.",
+    "topics": "Algoritmo Simplex, Tabelas Simplex, Método Simplex.",
+    "slidesUrl": null,
+    "subVideos": null
+  },
+  {
+    "id": 6,
+    "youtubeId": "gQP8WfzwFU8",
+    "title": "Aula 06: Método Big-M",
+    "description": "Aprender método para resolver qualquer tipo de PPL.",
+    "topics": "Método Big-M, PPLs, Resolução de PPLs.",
+    "slidesUrl": null,
+    "subVideos": null
+  },
+  {
+    "id": 7,
+    "youtubeId": null,
+    "title": "Aula 07: Dualidade [PLAYLIST - PREENCHER MANUALMENTE]",
+    "description": "Teoria da dualidade e seus teoremas.",
+    "topics": "Dualidade, Teoria da Dualidade, Teoremas da Dualidade.",
+    "slidesUrl": null,
+    "subVideos": null
+  },
+  {
+    "id": 8,
+    "youtubeId": "i2fcz5FRRos",
+    "title": "Aula 08: Interpretação Econômica da Dualidade e Simplex Dual",
+    "description": "Compreende o significado de dualidade e o algoritmo Simplex Dual.",
+    "topics": "Dualidade, Interpretação Econômica, Simplex Dual.",
+    "slidesUrl": null,
+    "subVideos": null
+  },
+  {
+    "id": 9,
+    "youtubeId": null,
+    "title": "Aula 09: Análise de Sensibilidade [PLAYLIST - PREENCHER MANUALMENTE]",
+    "description": "Analisar alterações no PPL e usar o software para fazer análise de sensibilidade.",
+    "topics": "Análise de Sensibilidade, Pós-otimização, Software de PPL.",
+    "slidesUrl": null,
+    "subVideos": null
+  },
+  {
+    "id": 10,
+    "youtubeId": "t2vUhtY1rbo",
+    "title": "Aula 10: Problema do Transporte e Designação",
+    "description": "Aprender o problema de transporte e o método húngaro para resolver o problema da designação.",
+    "topics": "Problema do Transporte, Problema da Designação, Método Húngaro.",
+    "slidesUrl": null,
+    "subVideos": null
   }
 ]

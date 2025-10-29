@@ -3,68 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesquisa Operacional I </title>
+    <title>Pesquisa Operacional I - PO Para Todos</title>
+    
     <link rel="icon" type="image/png" href="../assets/images/logos/logo_u_unirio.png">
+    
     <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../assets/css/pages.css"> <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <button class="menu-toggle" aria-label="Abrir menu">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
-        </svg>
-        <span>Menu</span>
-    </button>
+
+    <header class="main-header">
+        <button class="menu-toggle" aria-label="Abrir menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+            </svg>
+            <span>Menu</span>
+        </button>
+    </header>
 
     <nav class="side-menu">
         <ul class="side-menu__list">
-            <li><a href="../index.html"><i data-lucide="book-open"></i> Home </a></li>
+            <li><a href="../index.html"><i data-lucide="home"></i> Home</a></li>
             <li><a href="po2.html"><i data-lucide="book-open-check"></i> Pesquisa Operacional II</a></li>
             <li><a href="problemas.html"><i data-lucide="puzzle"></i> Problemas Clássicos</a></li>
         </ul>
     </nav>
+    
     <main class="main-content">
 
         <header class="hero-banner">
-            <img src="../assets/images/logos/novo logo unirio - horizontal negativo.png" alt="Logo do Projeto" class="hero-banner__logo">
+            <div class="hero-banner__logo-container">
+                <img src="../assets/images/logos/novo logo unirio - horizontal negativo.png" alt="Logo UNIRIO" class="hero-banner__logo">
+                <img src="../assets/images/logos/Logo proexc.jpg" alt="Logo Pró-Reitoria de Extensão" class="hero-banner__logo hero-banner__logo--proex"> 
+            </div>
             <h1>Pesquisa Operacional I</h1>
-            <a> Pesquisa Operacional para Todos </a>
+            <p>Videoaulas e materiais da disciplina de PO I.</p>
         </header>
 
-
-        <section class="index-box">
-            <h2>Index</h2>
-            <ul class="index-list">
-                <li> MATERIAL 1 </a></li>
-                <li> MATERIAL 2 </a></li>
-                <li> MATERIAL 3 </a></li>
-            </ul>
-        </section>
-
-        <section id="viewer" class="carousel">
-                <article class="carousel-slide">
-                    <iframe src=""></iframe>
-                </article>
+        <section class="lesson-container">
+            <div id="accordion-wrapper">
+                <p>Carregando aulas...</p>
             </div>
-            <button class="carousel-control prev" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="carousel-control next" onclick="moveSlide(1)">&#10095;</button>
         </section>
 
     </main>
 
-    <script src="../assets/js/main.js"></script>
     <script src="../assets/js/menu.js" defer></script>
-    <script>
+    <script src="../assets/js/video-loader.js"></script> <script>
         lucide.createIcons();
-
-        let current = 0;
-        const slides = document.querySelectorAll(".carousel-slide");
-
-        function moveSlide(dir) {
-            slides[current].classList.remove("active-slide");
-            current = (current + dir + slides.length) % slides.length;
-            slides[current].classList.add("active-slide");
-        }
     </script>
 </body>
 </html>

@@ -26,9 +26,12 @@
     <main class="main-content">
 
         <header class="hero-banner">
-            <img src="../assets/images/logos/novo logo unirio - horizontal negativo.png" alt="Logo do Projeto" class="hero-banner__logo">
+            <div class="hero-banner__logo-container">
+                <img src="/assets/images/logos/novo logo unirio - horizontal negativo.png" alt="Logo UNIRIO" class="hero-banner__logo">
+                <img src="/assets/images/logos/Logo proexc.jpg" alt="Logo Pró-Reitoria de Extensão" class="hero-banner__logo hero-banner__logo--proex">    
+            </div>
             <h1>Pesquisa Operacional II</h1>
-            <a> Pesquisa Operacional para Todos </a>
+            <a>Videoaulas e materiais da disciplina de PO II.</a>
         </header>
 
 
@@ -54,17 +57,5 @@
 
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/menu.js" defer></script>
-    <script>
-        lucide.createIcons();
-
-        let current = 0;
-        const slides = document.querySelectorAll(".carousel-slide");
-
-        function moveSlide(dir) {
-            slides[current].classList.remove("active-slide");
-            current = (current + dir + slides.length) % slides.length;
-            slides[current].classList.add("active-slide");
-        }
-    </script>
 </body>
 </html>

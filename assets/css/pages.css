@@ -1,0 +1,247 @@
+/* ==========================================================================
+   ESTILOS DAS PÁGINAS DE CONTEÚDO (PO1, PO2, etc.)
+   ========================================================================== */
+
+/* --- Banner da Página (PO1, PO2) --- */
+.page-banner {
+    /* Reutiliza a animação e o fundo do banner principal */
+    position: relative;
+    overflow: hidden;
+    color: white;
+    background-image: url('../assets/images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+/* Camada de gradiente animado (igual ao .hero-banner) */
+.page-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(-45deg, #001f3f, #005A9C, #003366, #007bff);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    opacity: 0.8;
+}
+
+/* Camada do grafo (igual ao .hero-banner) */
+.page-banner::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    width: 500px; height: 500px; top: -80px; right: -50px;
+    background-image: url('../assets/images/grafo-modelo-2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+}
+
+/* Conteúdo do banner (títulos) */
+.page-banner-content {
+    position: relative;
+    z-index: 2; /* Fica na frente das camadas de fundo */
+}
+
+.page-banner h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+}
+
+/* --- Container do Conteúdo (Lista) --- */
+.lesson-container {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+/* --- Estilos do Accordion --- */
+.accordion-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden; /* Importante para a animação */
+}
+
+/* SUBSTITUA a regra .accordion-header por esta: */
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* <<-- Voltamos para 'center' */
+    width: 100%;
+    background-color: #fff;
+    border: none;
+    padding: 1.5rem;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1.2rem; /* <-- Devolvemos o font-size para cá */
+    font-weight: 600; /* <-- Devolvemos o font-weight para cá */
+    color: var(--unirio-blue); /* <-- Devolvemos a color para cá */
+}
+
+/* Ajusta a posição da seta */
+.accordion-arrow {
+    transition: transform 0.3s ease;
+    /* Removemos o margin-top: 5px */
+}
+
+.accordion-header:hover {
+    background-color: #f8f9fa;
+}
+
+.accordion-arrow {
+    transition: transform 0.3s ease;
+}
+
+.accordion-header.active .accordion-arrow {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0; /* Começa fechado */
+    overflow: hidden;
+    transition: max-height 0.4s ease-out; /* A mágica da animação */
+    border-top: 1px solid #eee;
+}
+
+.accordion-content-inner {
+    padding: 1.5rem;
+}
+
+/* ADICIONE ESTE BLOCO DE VOLTA */
+.lesson-details {
+    margin-bottom: 1.5rem; /* Espaço entre os detalhes e o vídeo */
+}
+
+.lesson-details h4 {
+    font-size: 1.1rem;
+    color: var(--dark-text);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.lesson-details p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+/* --- Player de Vídeo Responsivo --- */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Seção de Materiais --- */
+.material-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+.material-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--dark-text);
+}
+
+.material-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.material-item a {
+    color: var(--secondary-blue);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.material-item a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   ESTILOS DAS ABAS (TABS) DOS VÍDEOS
+   ========================================================================== */
+
+.video-tab-container {
+    width: 100%;
+    margin-top: 1.5rem; /* Espaço depois dos Tópicos */
+    margin-bottom: 1.5rem; /* Espaço antes dos Materiais */
+}
+
+.tab-navigation {
+    display: flex;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 1rem;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--secondary-blue);
+    position: relative;
+    top: 2px;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-btn:hover {
+    background-color: #f8f9fa;
+}
+
+.tab-btn.active {
+    font-weight: 600;
+    color: var(--unirio-blue);
+    border-bottom-color: var(--unirio-blue);
+}
+
+.video-tab-pane {
+    display: none; /* Esconde todos os painéis por padrão */
+}
+
+.video-tab-pane.active {
+    display: block; /* Mostra apenas o painel ativo */
+}
+
+/* --- Responsividade para o Accordion --- */
+@media (max-width: 768px) {
+    .page-banner h1 {
+        font-size: 2rem;
+    }
+    
+    .lesson-container {
+        margin-top: 2rem;
+    }
+
+    .accordion-header {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .accordion-content-inner {
+        padding: 1rem;
+    }
+}
