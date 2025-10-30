@@ -257,8 +257,8 @@ body:has(.side-menu:hover) {
 }
 
 .indicator {
-    width: 30px;
-    height: 4px;
+    width: 50px;
+    height: 8px;
     background-color: rgba(0, 51, 102, 0.3);
     border-radius: 4px;
     cursor: pointer;
@@ -281,6 +281,7 @@ body:has(.side-menu:hover) {
 
 /* --- Setas de Navegação --- */
 .carousel-control {
+    display: none;
     visibility: hidden;
     position: absolute;
     top: 50%;
