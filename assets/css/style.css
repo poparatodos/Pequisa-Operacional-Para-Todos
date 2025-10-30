@@ -224,7 +224,6 @@ body:has(.side-menu:hover) {
     box-shadow: 0 4px 20px rgba(0,0,0,0.12);
     border-radius: 12px;
     overflow: hidden;
-    
 }
 
 /* --- Container dos Slides --- */
@@ -302,10 +301,12 @@ body:has(.side-menu:hover) {
 }
 
 .carousel-control.prev {
+    visibility: hidden;
     left: 2rem;
 }
 
 .carousel-control.next {
+    visibility: hidden;
     right: 2rem;
 }
 
