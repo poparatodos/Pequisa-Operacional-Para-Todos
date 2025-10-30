@@ -282,6 +282,7 @@ body:has(.side-menu:hover) {
 
 /* --- Setas de Navegação --- */
 .carousel-control {
+    visibility: hidden;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
